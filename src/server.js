@@ -4,8 +4,9 @@ import { configDotenv } from 'dotenv'
 import morgan from 'morgan'
 import directorsRoutes from './routes/directors.routes.js'
 import moviesRoutes from './routes/movies.routes.js'
-//import prisma from './prisma/prismaClient.js'
 import errorMiddleware from './middlewares/error.middleware.js'
+import { getStats } from "./controllers/stats.controller.js"
+
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.use(morgan("dev"))
 
 app.use("/directors", directorsRoutes)
 app.use("/movies", moviesRoutes)
+app.get("/stats", getStats)
 
 app.use(errorMiddleware)
 
